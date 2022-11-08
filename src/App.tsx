@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {ActivityPage} from "./pages/ActivityPage";
+import {CreatActivity} from "./components/CreatActivity";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {Activities} from "./components/Activities";
+import {SearchActivity} from "./components/SearchActivity";
+// toast contineralways should be in html otherwise toast will not work
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+      <BrowserRouter>
+          <nav className="nav flex-column">
+              <a className="nav-link active" aria-current="page" href="#">Active</a>
+              <a className="nav-link" href="/">Home</a>
+              <a className="nav-link" href="/home">Creat</a>
+              <SearchActivity/>
+          </nav>
+            <Routes>
+                <Route  path="/" element={<><ActivityPage/></>}/>
+                <Route  path="/home" element={<CreatActivity/>}/>
+            </Routes>
+          {/*// toast contineralways should be in html otherwise toast will not work*/}
+<ToastContainer/>
+        </BrowserRouter>
+  )
+
 }
 
 export default App;
